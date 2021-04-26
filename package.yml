@@ -1,0 +1,8 @@
+package: redaxo_custom_components
+version: '0.0.1'
+author: Benjamin Hacker
+
+requires:
+    php:
+        version: '>=7.0.0'
+    redaxo: '>=5.0.0'

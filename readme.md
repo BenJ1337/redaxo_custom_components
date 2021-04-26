@@ -1,6 +1,6 @@
-# Custom Redaxo Modules
+# Neue Redaxo Komponenten
 
-## Bildauswahl Componente
+## Bildauswahl Komponente
  - Aktuell noch Änderung in mediapool.js notwendig (siehe Pull-Request)
  - Der Code für das Modul befindet sich im Addonverzeichnis 
 

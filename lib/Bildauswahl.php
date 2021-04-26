@@ -6,16 +6,19 @@ class Bildauswahl
     private static $id = 0;
 
     private $rid;
-    private $storedValue;
-    private $itemIds;
+    private $slice;
+    private $path2Value;
     private $label;
     private $mediaId;
 
-    function __construct($label, $rid, $itemIds, $storedValue)
+    function __construct($label, $rid, $path2Value, $slice)
     {
-        $this->rid = $rid;
-        $this->itemIds = $itemIds;
-        $this->storedValue = $storedValue;
+        $this->rexValueId = $rid;
+        $this->path2Value = $path2Value;
+        if($slice == null) {
+            throw new RuntimeException("Die Bildauswahl kann nicht ohne Slice exisitieren!");
+        }
+        $this->rexValue = rex_var::toArray($slice->getValue($this->rexValueId));
         $this->label = $label;
         $this->mediaId = self::$id;
         self::$id += 1;
@@ -26,20 +29,20 @@ class Bildauswahl
         $output = '';
 
         $rex_value_1 = '';
-        if (isset($this->storedValue) && $this->storedValue != null) {
+        if (isset($this->rexValue) && $this->rexValue != null) {
             $curNode = null;
-            foreach ($this->itemIds as $value) {
+            foreach ($this->path2Value as $NodeName) {
                 if($curNode == null) {
                     // Besuch des ersten Knoten von der Wurzel aus
-                    if(isset($this->storedValue[$value]) && $this->storedValue[$value] != null) {
+                    if(isset($this->rexValue[$NodeName]) && $this->rexValue[$NodeName] != null) {
                         // Durchlaufe die Knoten des Baumes bis zum Blatt.
-                        $curNode = $this->storedValue[$value];
+                        $curNode = $this->rexValue[$NodeName];
                     }
                 } else {
                     // Besuche Kind vom aktuellen Knoten ($curNode)
-                    if(isset($curNode[$value]) && $curNode[$value] != null) {
+                    if(isset($curNode[$NodeName]) && $curNode[$NodeName] != null) {
                         // Wert vorhanden.
-                        $curNode = $curNode[$value];
+                        $curNode = $curNode[$NodeName];
                     } else {
                         // Modul initial hinzugefügt oder kein Wert im Bildauswahl gesetzt.
                         // $output .= '<script>console.log(">?");</script>';
@@ -103,7 +106,7 @@ class Bildauswahl
                     </div>
                     <input class="form-control" 
                         onchange="setPicture(' . $this->mediaId . ');"
-                        type="text" name="REX_INPUT_VALUE[' . $this->rid . '][' . join("][", $this->itemIds) . ']" 
+                        type="text" name="REX_INPUT_VALUE[' . $this->rexValueId . '][' . join("][", $this->path2Value) . ']" 
                         value="' . $rex_value_1 . '" 
                         id="REX_MEDIA_' . $this->mediaId . '" 
                         readonly>

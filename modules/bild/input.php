@@ -5,7 +5,7 @@ for($i = 0; $i < 5; $i++) {
         'Bildauswahl '.$i,
         1,
         ['bilder',$i],
-        $slice != null ? rex_var::toArray($slice->getValue(1)) : null
+        $slice
     );
     echo $bildauswahl->getHTML();
 }

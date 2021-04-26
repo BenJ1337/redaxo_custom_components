@@ -1,6 +1,10 @@
 # Custom Redaxo Modules
 
-## Bildauswahl (Aktuell noch Änderung in mediapool.js notwendig (siehe Pull-Request))
+## Bildauswahl Componente
+ - Aktuell noch Änderung in mediapool.js notwendig (siehe Pull-Request)
+ - Der Code für das Modul befindet sich im Addonverzeichnis 
+
+Für die Nutzung ein neues Modul im Redaxo Backend anlegen und den eigentlichen Code des Module folgendermaßen referenzieren. 
 
 ### Input
 

@@ -17,14 +17,19 @@ class MehrfachBildauswahl extends ComponentBase
             '<div class="rex-js-widget rex-js-widget-medialist">
             <label style="width: 100%;">' . $this->label . ':</label>
             <div class="input-group">
-                <select class="form-control" name="REX_MEDIALIST_SELECT[1]" id="REX_MEDIALIST_SELECT_' . self::$id . '" size="10">';
+                <select class="form-control" 
+                name="REX_MEDIALIST_SELECT[' . self::$id . ']" 
+                id="REX_MEDIALIST_SELECT_' . self::$id . '" size="10">';
         if (!empty($rex_value_1)) {
             foreach (explode(',', $rex_value_1) as $img) {
                 $htmlOutput .= '<option value="' . $img . '">' . $img . '</option> ';
             }
         }
         $htmlOutput .= '</select>
-                <input type="hidden" name="REX_INPUT_VALUE[' . $this->rexValueId . '][' . join("][", $this->path2Value) . ']" id="REX_MEDIALIST_' . self::$id . '" value="' . $rex_value_1 . '">
+                <input type="hidden" 
+                    name="REX_INPUT_VALUE[' . $this->rexValueId . '][' . join("][", $this->path2Value) . ']" 
+                    id="REX_MEDIALIST_' . self::$id . '" 
+                    value="' . $rex_value_1 . '">
                 <span class="input-group-addon">
                     <div class="btn-group-vertical">
                         <a href="#" 

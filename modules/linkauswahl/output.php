@@ -9,7 +9,6 @@ if ($rex_values_content != null) {
         } else {
             echo '<a href="' . rex_getUrl($artId) . '">' . rex_article::get($artId)->getName() . '</a>';
         }
-
         echo '</li>';
     }
     echo '</ol>';

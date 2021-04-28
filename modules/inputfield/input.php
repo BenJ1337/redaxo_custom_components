@@ -3,9 +3,11 @@ $slice = rex_article_slice::getArticleSliceById($rex_slice_id);
 if ($slice != null) {
     $rex_value = rex_var::toArray($slice->getValue(1));
 }
-
 $itemsize = 2;
-UmstrukturierungRexValue::changeItems($rex_value);
+if (isset($_POST['REX_INPUT_VALUE'][1])) {
+    $rex_value = $_POST['REX_INPUT_VALUE'][1];
+}
+UmstrukturierungRexValue::changeItems($rex_value, 'wrapper');
 if (isset($rex_value['wrapper'])) {
     $itemsize = sizeof($rex_value['wrapper']);
 }

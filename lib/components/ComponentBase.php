@@ -21,6 +21,11 @@ abstract class ComponentBase
         $this->label = $label;
     }
 
+    public function setRexValue($rexValue)
+    {
+        $this->rexValue = $rexValue;
+    }
+
     abstract public function getHTML();
 
     protected function getCurrentValue($rexValue, $path2Value)

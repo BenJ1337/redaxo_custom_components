@@ -1,11 +1,11 @@
 <?php
 $slice = rex_article_slice::getArticleSliceById($rex_slice_id);
 for ($i = 0; $i < 100; $i++) {
-    $bildauswahl = new Bildauswahl(
-        'Bildauswahl ' . $i,
+    $inputfield = new Inputfield(
+        'Text ' . $i,
         1,
-        ['bilder', $i],
+        ['text', $i],
         $slice
     );
-    echo $bildauswahl->getHTML();
+    echo $inputfield->getHTML();
 }

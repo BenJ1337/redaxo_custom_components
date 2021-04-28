@@ -2,14 +2,15 @@
 $rex_values_content = json_decode(rex_article_slice::getArticleSliceById($rex_slice_id)->getValue(1), true);
 if ($rex_values_content != null) {
     echo '<ol>';
-    foreach ($rex_values_content["bilder"] as $img) {
+    foreach ($rex_values_content["text"] as $artId) {
         echo '<li>';
-        if (empty($img)) {
-            echo 'Kein Bild';
+        if (empty($artId)) {
+            echo 'kein Verlinkung vorhanden.';
         } else {
-            echo '<img src="/media/' . $img . '">';
+            echo '<a href="' . rex_getUrl($artId) . '">' . rex_article::get($artId)->getName() . '</a>';
         }
-        echo  '</li>';
+
+        echo '</li>';
     }
     echo '</ol>';
 } else {

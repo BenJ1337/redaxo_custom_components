@@ -1,63 +1,23 @@
 <?php
 
-class Bildauswahl
+class Bildauswahl extends ComponentBase
 {
     // Id für das Bildauswahl innerhalb eines Modules, wird für die Interaktion mit dem Medienpool benötigt.
-    private static $id = 0;
+    private static $mediaId = 0;
 
-    private $rid;
-    private $slice;
-    private $path2Value;
-    private $label;
-    private $mediaId;
-
-    function __construct($label, $rid, $path2Value, $slice)
+    function __construct($label, $rexValueId, $path2Value, $slice)
     {
-        $this->rexValueId = $rid;
-        $this->path2Value = $path2Value;
-        if($slice == null) {
-            throw new RuntimeException("Die Bildauswahl kann nicht ohne Slice exisitieren!");
-        }
-        $this->rexValue = rex_var::toArray($slice->getValue($this->rexValueId));
-        $this->label = $label;
-        $this->mediaId = self::$id;
-        self::$id += 1;
+        parent::__construct($label, $rexValueId, $path2Value, $slice);
     }
 
     public function getHTML()
     {
-        $output = '';
+        $htmlOutput = '';
+        $rex_value_1 = $this->getCurrentValue($this->rexValue, $this->path2Value);
 
-        $rex_value_1 = '';
-        if (isset($this->rexValue) && $this->rexValue != null) {
-            $curNode = null;
-            foreach ($this->path2Value as $NodeName) {
-                if($curNode == null) {
-                    // Besuch des ersten Knoten von der Wurzel aus
-                    if(isset($this->rexValue[$NodeName]) && $this->rexValue[$NodeName] != null) {
-                        // Durchlaufe die Knoten des Baumes bis zum Blatt.
-                        $curNode = $this->rexValue[$NodeName];
-                    }
-                } else {
-                    // Besuche Kind vom aktuellen Knoten ($curNode)
-                    if(isset($curNode[$NodeName]) && $curNode[$NodeName] != null) {
-                        // Wert vorhanden.
-                        $curNode = $curNode[$NodeName];
-                    } else {
-                        // Modul initial hinzugefügt oder kein Wert im Bildauswahl gesetzt.
-                        // $output .= '<script>console.log(">?");</script>';
-                        $curNode = null;
-                        break;
-                    }
-                }
-            }
-            if($curNode != null) {
-                $rex_value_1 = $curNode;
-            }
-        }
         // JavaScript und CSS einmalig der Page hinzufügen
-        if ($this->mediaId == 0) {
-            $output .= '<script>
+        if (Bildauswahl::$mediaId == 0) {
+            $htmlOutput .= '<script>
                 function setPicture(id) {
                     var picture = document.getElementById(\'REX_MEDIA_\'+id).value;
                     if(picture !== "") {
@@ -69,7 +29,7 @@ class Bildauswahl
                     }
                 }
             </script>';
-            $output .= '<style>
+            $htmlOutput .= '<style>
                     .rex-slice .input-wrapper:hover img {
                         z-index: 4;
                         object-fit: initial;
@@ -97,40 +57,40 @@ class Bildauswahl
                     }
                 </style>';
         }
-        $output .= '
+        $htmlOutput .= '
             <label style="width: 100%;">' . $this->label . ':</label>
             <div class="rex-js-widget rex-js-widget-media bildauswahl">
                 <div class="input-group">
                     <div class="input-wrapper">
-                        <img id="REX_MEDIA_' . $this->mediaId . '_PREVIEW" src="" />
+                        <img id="REX_MEDIA_' . Bildauswahl::$mediaId . '_PREVIEW" src="" />
                     </div>
                     <input class="form-control" 
-                        onchange="setPicture(' . $this->mediaId . ');"
+                        onchange="setPicture(' . Bildauswahl::$mediaId . ');"
                         type="text" name="REX_INPUT_VALUE[' . $this->rexValueId . '][' . join("][", $this->path2Value) . ']" 
                         value="' . $rex_value_1 . '" 
-                        id="REX_MEDIA_' . $this->mediaId . '" 
+                        id="REX_MEDIA_' . Bildauswahl::$mediaId . '" 
                         readonly>
                     <script>   
-                        setPicture(' . $this->mediaId . ');
+                        setPicture(' . Bildauswahl::$mediaId . ');
                     </script>
                     <span class="input-group-btn">
                         <a href="#" class="btn btn-popup" 
-                            onclick="openREXMedia(' . $this->mediaId . ',\'\');return false;" 
+                            onclick="openREXMedia(' . Bildauswahl::$mediaId . ',\'\');return false;" 
                             title="Medium auswählen">
                                 <i class="rex-icon rex-icon-open-mediapool"></i>
                         </a>
                         <a href="#" class="btn btn-popup" 
-                            onclick="addREXMedia(' . $this->mediaId . ',\'\');return false;" 
+                            onclick="addREXMedia(' . Bildauswahl::$mediaId . ',\'\');return false;" 
                             title="Neues Medium hinzufügen">
                                 <i class="rex-icon rex-icon-add-media"></i>
                         </a>
                         <a href="#" class="btn btn-popup" 
-                            onclick="deleteREXMedia(' . $this->mediaId . ');return false;" 
+                            onclick="deleteREXMedia(' . Bildauswahl::$mediaId . ');return false;" 
                             title="Ausgewähltes Medium löschen">
                                 <i class="rex-icon rex-icon-delete-media"></i>
                         </a>
                         <a href="#" class="btn btn-popup" 
-                            onclick="viewREXMedia(' . $this->mediaId . ',\'\');return false;" 
+                            onclick="viewREXMedia(' . Bildauswahl::$mediaId . ',\'\');return false;" 
                             title="Ausgewähltes Medium anzeigen">
                                 <i class="rex-icon rex-icon-view-media"></i>
                         </a>
@@ -138,6 +98,7 @@ class Bildauswahl
                 </div>
                 <div class="rex-js-media-preview"></div>
             </div>';
-        return $output;
+        Bildauswahl::$mediaId++;
+        return $htmlOutput;
     }
 }

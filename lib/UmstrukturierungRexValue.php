@@ -5,11 +5,6 @@ class UmstrukturierungRexValue
     {
         return
             '
-            <script>
-                function dontSave() {
-                    document.getElementsByName(\'save\')[0].value=0;
-                }
-            </script>
             <div 
             style="background: #555; padding: 5px; margin: 0 -5px 10px; display: inline-block; width: calc(100% + 10px);">'
             . '<div style="width: 33.3%; float: left;">'
@@ -44,7 +39,7 @@ class UmstrukturierungRexValue
             type="submit" 
             name="item-down" 
             title="DOWN"
-            onclick="dontSave();"
+            onclick="document.getElementsByName(\'save\')[0].value=0;"
             value="' . $itemId . '">
                 <i style="color: #fff" class="glyphicon glyphicon-chevron-down"></i>
             </button>';
@@ -56,7 +51,7 @@ class UmstrukturierungRexValue
             type="submit" 
             name="item-up" 
             title="UP"
-            onclick="dontSave();"
+            onclick="document.getElementsByName(\'save\')[0].value=0;"
             value="' . $itemId . '">
                 <i style="color: #fff" class="glyphicon glyphicon-chevron-up"></i>
             </button>';
@@ -68,7 +63,7 @@ class UmstrukturierungRexValue
                 type="submit" 
                 title="New item before"
                 name="item-new-before" 
-                onclick="dontSave();"
+                onclick="document.getElementsByName(\'save\')[0].value=0;"
                 value="' . $itemId . '">
                     <i style="color: #fff" class="glyphicon glyphicon-plus"></i> Before
                 </button>';
@@ -80,7 +75,7 @@ class UmstrukturierungRexValue
                 type="submit" 
                 title="New item after"
                 name="item-new-after" 
-                onclick="dontSave();"
+                onclick="document.getElementsByName(\'save\')[0].value=0;"
                 value="' . $itemId . '">
                     <i style="color: #fff" class="glyphicon glyphicon-plus"></i> After
                 </button>';
@@ -91,7 +86,7 @@ class UmstrukturierungRexValue
         return '<button class="controle-btn"
                 type="submit" 
                 title="REMOVE"
-                onclick="dontSave();"
+                onclick="document.getElementsByName(\'save\')[0].value=0;"
                 name="item-remove" 
                 value="' . $itemId . '">
                     <i style="color: #fff" class="glyphicon glyphicon-trash"></i>

@@ -1,0 +1,34 @@
+.rcc-header {
+    background: #555; 
+    padding: 5px; 
+    margin: 0 -5px 10px; 
+    display: inline-block; 
+    width: calc(100% + 10px);
+}
+
+.rcc-btn-group {
+    width: 33.3%; 
+    float: left;
+    text-align: center;
+}
+
+
+.controle-btn {
+    background: #222;
+    color: #eee;
+    border: none;
+    padding: 7px 9px;
+    margin-right: 5px;
+    border-radius: 4px;
+    outline: none;
+}
+
+.controle-btn span {
+    font-size: 27px;
+    line-height: 0;
+}
+
+.controle-btn:hover {
+    background: #444;
+    color: #fff;
+}

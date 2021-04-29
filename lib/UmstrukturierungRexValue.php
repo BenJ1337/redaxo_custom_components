@@ -5,32 +5,18 @@ class UmstrukturierungRexValue
     {
         return
             '
-            <div 
-            style="background: #555; padding: 5px; margin: 0 -5px 10px; display: inline-block; width: calc(100% + 10px);">'
-            . '<div style="width: 33.3%; float: left;">'
+            <div class="rcc-header">'
+            . '<div class="rcc-btn-group">'
             . UmstrukturierungRexValue::addMoveItemUpBtn($itemId)
             . UmstrukturierungRexValue::addMoveItemDownBtn($itemId)
             . '</div>'
-            . '<div style="width: 33.3%; float: left;">'
+            . '<div class="rcc-btn-group">'
             . UmstrukturierungRexValue::addRemoveItemBtn($itemId)
             . '</div>'
-            . '<div style="width: 33.3%; float: left;">'
+            . '<div class="rcc-btn-group">'
             . UmstrukturierungRexValue::addNewItemBeforeBtn($itemId)
             . UmstrukturierungRexValue::addNewItemAfterBtn($itemId)
-            . '</div></div>'
-            . '<style>
-            .controle-btn {
-                background: #222;
-                color: #eee;
-                border: none;
-                padding: 3px 5px;
-                margin-right: 5px;
-            }
-            .controle-btn:hover {
-                background: #444;
-                color: #fff;
-            }
-    </style>';
+            . '</div></div>';
     }
 
     public static function addMoveItemDownBtn($itemId)
@@ -41,7 +27,7 @@ class UmstrukturierungRexValue
             title="DOWN"
             onclick="document.getElementsByName(\'save\')[0].value=0;"
             value="' . $itemId . '">
-                <i style="color: #fff" class="glyphicon glyphicon-chevron-down"></i>
+                <i style="color: #139df0" class="glyphicon glyphicon-chevron-down"></i>
             </button>';
     }
 
@@ -53,7 +39,7 @@ class UmstrukturierungRexValue
             title="UP"
             onclick="document.getElementsByName(\'save\')[0].value=0;"
             value="' . $itemId . '">
-                <i style="color: #fff" class="glyphicon glyphicon-chevron-up"></i>
+                <i style="color: #139df0" class="glyphicon glyphicon-chevron-up"></i>
             </button>';
     }
 
@@ -65,7 +51,7 @@ class UmstrukturierungRexValue
                 name="item-new-before" 
                 onclick="document.getElementsByName(\'save\')[0].value=0;"
                 value="' . $itemId . '">
-                    <i style="color: #fff" class="glyphicon glyphicon-plus"></i> Before
+                    <i style="color: #1ff00d" class="glyphicon glyphicon-plus"></i> <span>&#11023;<span>
                 </button>';
     }
 
@@ -77,7 +63,7 @@ class UmstrukturierungRexValue
                 name="item-new-after" 
                 onclick="document.getElementsByName(\'save\')[0].value=0;"
                 value="' . $itemId . '">
-                    <i style="color: #fff" class="glyphicon glyphicon-plus"></i> After
+                    <i style="color: #1ff00d" class="glyphicon glyphicon-plus"></i> <span>&#11022;</span>
                 </button>';
     }
 
@@ -89,7 +75,7 @@ class UmstrukturierungRexValue
                 onclick="document.getElementsByName(\'save\')[0].value=0;"
                 name="item-remove" 
                 value="' . $itemId . '">
-                    <i style="color: #fff" class="glyphicon glyphicon-trash"></i>
+                    <i style="color: #ff2b2b" class="glyphicon glyphicon-trash"></i>
                 </button>';
     }
 

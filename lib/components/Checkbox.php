@@ -1,4 +1,7 @@
 <?php
+
+namespace redaxo_custom_components;
+
 class Checkbox extends ComponentBase
 {
     private $checkbox_checked_value;

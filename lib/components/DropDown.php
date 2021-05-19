@@ -1,4 +1,7 @@
 <?php
+
+namespace redaxo_custom_components;
+
 class DropDown extends ComponentBase
 {
     private $options;

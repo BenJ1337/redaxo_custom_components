@@ -1,5 +1,7 @@
 <?php
 
+namespace redaxo_custom_components;
+
 class Bildauswahl extends ComponentBase
 {
     // Id für das Bildauswahl innerhalb eines Modules, wird für die Interaktion mit dem Medienpool benötigt.

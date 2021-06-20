@@ -20,7 +20,10 @@ class Bildauswahl extends ComponentBase
             $htmlOutput .= '<script>
                 function setPicture(id) {
                     var picture = document.getElementById(\'REX_MEDIA_\'+id).value;
-                    if(picture !== "") {
+                    if(picture !== undefined && picture !== "" 
+                        && (picture.includes("png")
+                            || picture.includes("jpg")
+                            || picture.includes("jpeg"))) {
                         console.log("Bild ausgewählt: " + picture);
                         document.getElementById(\'REX_MEDIA_\'+id+\'_PREVIEW\').src = \'/media/\'  + picture
                     } else {

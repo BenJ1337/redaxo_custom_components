@@ -1,5 +1,7 @@
 <?php
 
+namespace redaxo_custom_components;
+
 class Linkauswahl extends ComponentBase
 {
 

@@ -5,7 +5,7 @@
     <?php
     $slice = rex_article_slice::getArticleSliceById($rex_slice_id);
 
-    $dropdown = new DropDown(
+    $dropdown = new redaxo_custom_components\DropDown(
         'Sprache',
         1,
         ['lang'],
@@ -22,7 +22,7 @@
         ]
     );
     echo $dropdown->getHTML();
-    $textarea = new Textarea(
+    $textarea = new redaxo_custom_components\Textarea(
         'Code',
         1,
         ['code'],

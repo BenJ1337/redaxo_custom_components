@@ -1,7 +1,7 @@
 <?php
 $slice = rex_article_slice::getArticleSliceById($rex_slice_id);
 for ($i = 0; $i < 100; $i++) {
-    $linkauswahl = new Linkauswahl(
+    $linkauswahl = new redaxo_custom_components\Linkauswahl(
         'Text ' . $i,
         1,
         ['text', $i],

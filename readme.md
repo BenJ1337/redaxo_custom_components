@@ -1,5 +1,9 @@
 # Neue Redaxo Komponenten
 
+## Installation
+
+klone oder kopiere dieses repository in Deine Redaxo Installation unter /redaxo/src/addons/<this-repository>
+
 ## Bildauswahl Komponente
  - Aktuell noch Änderung in mediapool.js notwendig (siehe Pull-Request)
  - Der Code für das Modul befindet sich im Addonverzeichnis 

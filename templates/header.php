@@ -4,7 +4,10 @@ use redaxo_url_rewrite\URLManager;
 
 $servername = rex::getServerName();
 $htmlTitle = '';
-$subdirectory = URLManager::getSubdirectory();
+$subdirectory = '/';
+if (class_exists('redaxo_url_rewrite\URLManager')) {
+    $subdirectory = URLManager::getSubdirectory();
+}
 
 $title = rex_article::getCurrent()->getValue('art_website_title');
 if (isset($title) && !empty($title)) {

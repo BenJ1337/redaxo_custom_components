@@ -95,8 +95,9 @@ $outputBuilder->withFrontendOutput($htmlOutput);
 echo $outputBuilder->build();
 
 if (rex::isBackend()) {
-    print("
-<link rel=\"stylesheet\" href=\"/assets/addons/custommodules/frontend/slick-slider/slick.css\">
-<link rel=\"stylesheet\" href=\"/assets/addons/custommodules/frontend/slick-slider/slick-theme.css\">
-<script src=\"/assets/addons/custommodules/frontend/slick-slider/slick.min.js\"></script>");
+    print(
+    "
+<link rel=\"stylesheet\" href=\"/assets/addons/redaxo_custom_components/frontend/slick-slider/slick.css\">
+<link rel=\"stylesheet\" href=\"/assets/addons/redaxo_custom_components/frontend/slick-slider/slick-theme.css\">
+<script src=\"/assets/addons/redaxo_custom_components/frontend/slick-slider/slick.min.js\"></script>");
 }

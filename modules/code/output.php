@@ -23,7 +23,7 @@ $outputBuilder->withFrontendOutput($htmlOutput);
 echo $outputBuilder->build();
 
 if (rex::isBackend()) {
-    echo '<script src="/assets/addons/custommodules/frontend/highlightjs/highlight.min.js"></script>
-            <link rel="stylesheet" href="/assets/addons/custommodules/frontend/highlightjs/default.min.css">
+    echo '<script src="/assets/addons/redaxo_custom_components/frontend/highlightjs/highlight.min.js"></script>
+            <link rel="stylesheet" href="/assets/addons/redaxo_custom_components/frontend/highlightjs/default.min.css">
             <script>hljs.initHighlightingOnLoad();</script>';
 }

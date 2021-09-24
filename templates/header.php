@@ -1,6 +1,10 @@
 <?php
+
+use redaxo_url_rewrite\URLManager;
+
 $servername = rex::getServerName();
 $htmlTitle = '';
+$subdirectory = URLManager::getSubdirectory();
 
 $title = rex_article::getCurrent()->getValue('art_website_title');
 if (isset($title) && !empty($title)) {
@@ -24,9 +28,13 @@ if (isset($metaDescription) && !empty($metaDescription)) {
 
 <?php
 if (isset($templateDebug) && $templateDebug == true) {
-    echo '<script src="/public/dev/script.js"></script>';
+    echo '<script src="'
+    . $subdirectory
+        . 'rexsources/dev/script.js"></script>';
 } else {
-    echo '<script src="/public/script.js"></script>';
+    echo '<script src="'
+    . $subdirectory
+        . 'rexsources/script.js"></script>';
 }
 if ($globalSettings->isSlickslider()) {
     echo '<link rel="stylesheet" href="/assets/addons/' . $addonName . '/frontend/slick-slider/slick.css">
@@ -44,8 +52,8 @@ if ($globalSettings->isHighlightjs()) {
     echo '<link rel="stylesheet" href="/assets/addons/' . $addonName . '/frontend/highlightjs/default.min.css">';
 }
 if (isset($templateDebug) && $templateDebug == true) {
-    echo '<script src="/public/dev/styles.js"></script>';
+    echo '<script src="' . $subdirectory . 'rexsources/dev/styles.js"></script>';
 } else {
-    echo '<link rel="stylesheet" href="/public/styles.css">';
+    echo '<link rel="stylesheet" href="' . $subdirectory . 'rexsources/styles.css">';
 }
 ?>

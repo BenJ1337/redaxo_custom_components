@@ -23,8 +23,8 @@ if ($globalSettings->isHighlightjs()) {
 
 <?php
 if (isset($photoswipeInUse) && $photoswipeInUse) {
-    /*echo '<link rel="stylesheet" type="text/css" href="/public/cookieconsent/cookieconsent.min.css" />
-    <script src="/public/cookieconsent/cookieconsent.min.js"></script>
+    /*echo '<link rel="stylesheet" type="text/css" href="/rexsources/cookieconsent/cookieconsent.min.css" />
+    <script src="/rexsources/cookieconsent/cookieconsent.min.js"></script>
     <script>
     window.addEventListener("load", function(){
     window.cookieconsent.initialise({

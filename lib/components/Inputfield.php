@@ -1,31 +1,42 @@
 <?php
 
-namespace redaxo_custom_components;
-
-class Inputfield extends ComponentBase
+class Inputfield
 {
 
-    function __construct($label, $rexValueId, $path2Value, $slice)
+    private $rid;
+    private $storedValue;
+    private $itemId;
+    private $label;
+
+    function __construct($label, $rid, $itemId, $storedValue)
     {
-        parent::__construct($label, $rexValueId, $path2Value, $slice);
+        $this->rid = $rid;
+        $this->itemId = $itemId;
+        $this->storedValue = $storedValue;
+        $this->label = $label;
     }
+
+
 
     public function getHTML()
     {
         $htmlOutput = '';
-        $rex_value_1 = $this->getCurrentValue($this->rexValue, $this->path2Value);
+        $rex_value_1 = '';
+        if (isset($this->storedValue) && $this->storedValue != null) {
+            foreach ($this->itemId as $value) {
+                if (isset($this->storedValue[$value]) || isset($rex_value_1[$value])) {
+                    if ($rex_value_1 == '') {
+                        $rex_value_1 = $this->storedValue[$value];
+                    } else {
+                        $rex_value_1 = $rex_value_1[$value];
+                    }
+                }
+            }
+        }
         $htmlOutput .=
-            '<label 
-                style="width: 100%;" 
-                for="c-' . join("-", $this->path2Value) . '">' . 
-            $this->label . 
-            ':</label>' .
-            '<input type="text" 
-                data-rex-item-id="' . join(",", $this->path2Value) . '" 
-                name="REX_INPUT_VALUE[' . $this->rexValueId . '][' . join("][", $this->path2Value) . ']" 
-                value="' . $rex_value_1 . '" 
-                class="form-control"
-                id="c-' . join("-", $this->path2Value) . '" />';
+            '<label style="width: 100%;" for="c-' . join("-", $this->itemId) . '">' . $this->label . ':</label>' .
+            '<input type="text" data-rex-item-id="' . join(",", $this->itemId) . '" name="REX_INPUT_VALUE[' . $this->rid . '][' . join("][", $this->itemId) . ']" value="' . $rex_value_1 . '" id="c-' . join("-", $this->itemId) . '" />';
+
         return $htmlOutput;
     }
 }

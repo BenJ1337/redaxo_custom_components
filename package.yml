@@ -2,7 +2,12 @@ package: redaxo_custom_components
 version: '0.0.1'
 author: Benjamin Hacker
 
+page:
+  title: 'Einstellungen'
+  icon: rex-icon fa-link
+  perm: admin
+
 requires:
     php:
-        version: '>=7.0.0'
+        version: '>=7.4.0'
     redaxo: '>=5.0.0'

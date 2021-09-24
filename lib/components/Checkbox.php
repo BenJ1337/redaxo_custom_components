@@ -1,45 +1,43 @@
 <?php
-
-namespace redaxo_custom_components;
-
-class Checkbox extends ComponentBase
+class Checkbox
 {
-    private $checkbox_checked_value;
-    private $checkbox_unchecked_value;
+    private $rid;
+    private $storedValue;
+    private $itemId;
+    private $label;
+    private $checkbox_value;
 
-    function __construct($label, $rexValueId, $path2Value, $slice, $checkbox_checked_value, $checkbox_unchecked_value)
+    function __construct($label, $rid, $itemId, $storedValue, $checkbox_value)
     {
-        parent::__construct($label, $rexValueId, $path2Value, $slice);
-        $this->checkbox_checked_value = $checkbox_checked_value;
-        $this->checkbox_unchecked_value = $checkbox_unchecked_value;
+        $this->rid = $rid;
+        $this->itemId = $itemId;
+        $this->storedValue = $storedValue;
+        $this->label = $label;
+        $this->checkbox_value = $checkbox_value;
     }
 
     public function getHTML()
     {
         $htmlOutput = '';
-        $rex_value_1 = $this->getCurrentValue($this->rexValue, $this->path2Value);
-        $checked = "";
-
-        if ($rex_value_1 == $this->checkbox_checked_value) {
-            $checked = "checked";
-        } else {
-            $rex_value_1 = $this->checkbox_unchecked_value;
+        $rex_value_1 = "0";
+        if (isset($this->storedValue) && $this->storedValue != null) {
+            foreach ($this->itemId as $value) {
+                if (isset($this->storedValue[$value])) {
+                    $rex_value_1 = $this->storedValue[$value];
+                }
+            }
         }
 
-        $htmlOutput .= '<div class="checkbox">' .
-            '<label for="c-' . join("-", $this->path2Value) . '">' .
-            '<input 
-                onchange="
-                    this.nextSibling.nextSibling.value=(this.checked==true?\'' . $this->checkbox_checked_value . '\':\'' . $this->checkbox_unchecked_value . '\');"
-                data-rex-item-id="c-' . join("-", $this->path2Value) . '" 
-                type="checkbox" ' .
-            'id="c-' . join("-", $this->path2Value) . '" 
-                ' . $checked . '>' .
-            $this->label . '
-            <input type="hidden" 
-                data-rex-item-id="hi-' . join("-", $this->path2Value) . '"
-                name="REX_INPUT_VALUE[' . $this->rexValueId . '][' . join("][", $this->path2Value) . ']" 
-                value="' . $rex_value_1 . '" /></label>' .
+        $checked = "";
+        if ($rex_value_1 == $this->checkbox_value) {
+            $checked = "checked";
+        }
+
+        $htmlOutput .=    '<div class="checkbox">' .
+            '<label for="c-' . join("-", $this->itemId) . '">' .
+            '<input name="REX_INPUT_VALUE[' . $this->rid . '][' . join("][", $this->itemId) . ']"  data-rex-item-id="' . join(",", $this->itemId) . '" type="checkbox" ' .
+            'id="c-' . join("-", $this->itemId) . '" value="' . $this->checkbox_value . '"' . $checked . '>' .
+            $this->label . '</label>' .
             '</div>';
         return $htmlOutput;
     }

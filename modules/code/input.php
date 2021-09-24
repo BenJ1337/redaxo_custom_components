@@ -1,33 +1,32 @@
-<div style="padding: 5px; background: #e8e8e8; border-radius: 4px;">
-    <a style="color: #002acc;" target="_blank" href="https://highlightjs.org/">https://highlightjs.org/</a>
-</div>
-<div class="form-group">
-    <?php
-    $slice = rex_article_slice::getArticleSliceById($rex_slice_id);
+<ul class="nav nav-tabs">
+    <li class="active">
+        <a data-toggle="tab" href="#general">Einstellungen</a>
+    </li>
+    <li>
+        <a data-toggle="tab" href="#nested">Breite</a>
+    </li>
+</ul>
 
-    $dropdown = new redaxo_custom_components\DropDown(
-        'Sprache',
-        1,
-        ['lang'],
-        $slice,
-        [
-            'Ohne Hervorhebung' => 'nohighlight',
-            'Text' => 'plaintext',
-            'PHP' => 'php',
-            'SQL' => 'sql',
-            'CSS' => 'css',
-            'Python' => 'python',
-            'HTML' => 'html',
-            'SCSS' => 'scss'
-        ]
-    );
-    echo $dropdown->getHTML();
-    $textarea = new redaxo_custom_components\Textarea(
-        'Code',
-        1,
-        ['code'],
-        $slice
-    );
-    echo $textarea->getHTML();
-    ?>
+<div class="tab-content">
+    <div id="general" class="tab-pane fade in active">
+        <div class="form-group">
+            <?php
+            $slice = rex_article_slice::getArticleSliceById($rex_slice_id);
+
+            $textareaCode = new Textarea(
+                "Code",
+                2,
+                ['code'],
+                $slice != null ? rex_var::toArray($slice->getValue(2)) : null
+            );
+            $textareaCode->getHTML();
+            ?>
+        </div>
+    </div>
+    <div id="nested" class="tab-pane fade">
+        <?php
+        $bootstrapFormBuilder = new CM_BootstrapFormBuilder($slice);
+        echo $bootstrapFormBuilder->build();
+        ?>
+    </div>
 </div>

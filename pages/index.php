@@ -236,6 +236,8 @@ if (isset($_POST["delete_modules_from_database"])) {
     </fieldset>
 </form>
 
+<?php  include 'manageGlobalLinks.php'; ?>
+
 <fieldset>
     <legend>Meta Info Einstellungen:</legend>
     <table class="table table-striped">

@@ -54,9 +54,10 @@ if ($globalSettings->isFontawesome()) {
 if ($globalSettings->isHighlightjs()) {
     echo '<link rel="stylesheet" href="/assets/addons/' . $addonName . '/frontend/highlightjs/default.min.css">';
 }
-if (isset($templateDebug) && $templateDebug == true) {
-    echo '<script src="' . $subdirectory . 'rexsources/dev/styles.js"></script>';
-} else {
-    echo '<link rel="stylesheet" href="' . $subdirectory . 'rexsources/styles.css">';
-}
+
+
+echo '<link rel="stylesheet" href="' . $subdirectory . rex_addon::get('redaxo_custom_components')->getAssetsUrl('/frontend/bootstrap_5/bootstrap.min.css').'">';
+echo '<script src="'. $subdirectory . rex_addon::get('redaxo_custom_components')->getAssetsUrl('/frontend/bootstrap5/bootstrap.bundle.min.js').'"></script>';
+
+
 ?>

@@ -1,0 +1,6 @@
+<?php
+
+const IMPRESSUM_KEY = "IMPRESSUM_KEY";
+const DATENSCHUTZ_KEY = "DATENSCHUTZ_KEY";
+
+?>

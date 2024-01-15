@@ -1,10 +1,14 @@
 <?php
+//rex_article_content:: getContentAsQuery(true) -> SQL Queries erlauben
+$this->getContentAsQuery(true);
+$slice = rex_article_slice::getArticleSliceById($this->getCurrentSlice()->getId());
+
 $globalSettings = CM_Global_Request_Settings::getInstance();
 $globalSettings->setSlickslider(true);
 
 
-$rex_values_settings = json_decode(rex_article_slice::getArticleSliceById($rex_slice_id)->getValue(1), true);
-$rex_values_content = json_decode(rex_article_slice::getArticleSliceById($rex_slice_id)->getValue(2), true);
+$rex_values_settings = json_decode($slice->getValue(1), true);
+$rex_values_content = json_decode($slice->getValue(2), true);
 if (rex::isBackend()) {
     echo '<div class="panel panel-default"><div class="panel-heading">'
         . rex_i18n::msg('cm_slice_settings')
@@ -20,7 +24,7 @@ if (rex::isBackend()) {
         . '</div><div class="panel-body">';
 }
 
-$rex_values_settings = json_decode(rex_article_slice::getArticleSliceById($rex_slice_id)->getValue(1), true);
+$rex_values_settings = json_decode($slice->getValue(1), true);
 
 $outputBuilder = new CM_OutputBuilder(
     $rex_values_settings[BootstrapColWidth::lg],
@@ -29,7 +33,7 @@ $outputBuilder = new CM_OutputBuilder(
     $rex_values_settings[BootstrapColWidth::xs]
 );
 
-$rex_values_content = json_decode(rex_article_slice::getArticleSliceById($rex_slice_id)->getValue(2), true);
+$rex_values_content = json_decode($slice->getValue(2), true);
 
 $htmlOutput = '';
 

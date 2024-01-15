@@ -1,4 +1,6 @@
 <?php
-$slice = rex_article_slice::getArticleSliceById($rex_slice_id);
-$bootstrapFormBuilder = new CM_BootstrapFormBuilder($slice);
-echo $bootstrapFormBuilder->build();
+$sliceId = -1;
+if (null !== $this->sliceSql) {
+    $sliceId = $this->getCurrentSlice()->getId();
+}
+echo (new ModuleManager($sliceId))->getInput("");

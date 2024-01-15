@@ -1,3 +1,9 @@
+<?php
+$sliceId = -1;
+if (null !== $this->sliceSql) {
+    $sliceId = $this->getCurrentSlice()->getId();
+}
+?>
 <ul class="nav nav-tabs">
     <li class="active"><a data-toggle="tab" href="#general">Einstellungen</a></li>
     <li><a data-toggle="tab" href="#nested">Breite</a></li>
@@ -8,14 +14,13 @@
             <div class="rex-js-widget rex-js-widget-medialist">
                 <div class="input-group">
                     <?php
-                    $slice = rex_article_slice::getArticleSliceById($rex_slice_id);
                     $mehrfachbildauswahl = new MehrfachBildauswahl(
                         "Bilder",
-                        2,
                         ['bilder'],
-                        $slice != null ? rex_var::toArray($slice->getValue(2)) : null
+                        $sliceId,
+                        2,
                     );
-                    $mehrfachbildauswahl->getHTML();
+                    echo $mehrfachbildauswahl->getHTML();
                     ?>
                 </div>
             </div>
@@ -34,31 +39,31 @@
         </div>
         <div class="form-group">
             <?php
-            $checkbox = new Checkbox("Punkte", 2, ["dots"], $slice != null ? rex_var::toArray($slice->getValue(2)) : null, 'true');
+            $checkbox = new Checkbox("Punkte", ["dots"], $sliceId, 2, 'true');
             echo $checkbox->getHTML();
             ?>
         </div>
         <div class="form-group">
             <?php
-            $checkbox = new Checkbox("Unendliches Scrollen", 2, ["infinity"], $slice != null ? rex_var::toArray($slice->getValue(2)) : null, 'true');
+            $checkbox = new Checkbox("Unendliches Scrollen", ["infinity"], $sliceId, 2, 'true');
             echo $checkbox->getHTML();
             ?>
         </div>
         <div class="form-group">
             <?php
-            $checkbox = new Checkbox("Pfeile", 2, ["arrows"], $slice != null ? rex_var::toArray($slice->getValue(2)) : null, 'true');
+            $checkbox = new Checkbox("Pfeile",  ["arrows"], $sliceId, 2, 'true');
             echo $checkbox->getHTML();
             ?>
         </div>
         <div class="form-group">
             <?php
-            $checkbox = new Checkbox("Verblassen-Effekt", 2, ["fade"], $slice != null ? rex_var::toArray($slice->getValue(2)) : null, 'true');
+            $checkbox = new Checkbox("Verblassen-Effekt",  ["fade"], $sliceId, 2, 'true');
             echo $checkbox->getHTML();
             ?>
         </div>
         <div class="form-group">
             <?php
-            $checkbox = new Checkbox("Stop bei Mouseover", 2, ["stop_on_mouseover"], $slice != null ? rex_var::toArray($slice->getValue(2)) : null, 'true');
+            $checkbox = new Checkbox("Stop bei Mouseover", ["stop_on_mouseover"], $sliceId, 2, 'true');
             echo $checkbox->getHTML();
             ?>
         </div>

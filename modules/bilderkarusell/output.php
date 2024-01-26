@@ -30,7 +30,8 @@ $outputBuilder = new CM_OutputBuilder(
     $rex_values_settings[BootstrapColWidth::lg],
     $rex_values_settings[BootstrapColWidth::md],
     $rex_values_settings[BootstrapColWidth::sm],
-    $rex_values_settings[BootstrapColWidth::xs]
+    $rex_values_settings[BootstrapColWidth::xs],
+    $this->getCurrentSlice()->getId()
 );
 
 $rex_values_content = json_decode($slice->getValue(2), true);
@@ -100,7 +101,7 @@ echo $outputBuilder->build();
 
 if (rex::isBackend()) {
     print(
-    "
+        "
 <link rel=\"stylesheet\" href=\"/assets/addons/redaxo_custom_components/frontend/slick-slider/slick.css\">
 <link rel=\"stylesheet\" href=\"/assets/addons/redaxo_custom_components/frontend/slick-slider/slick-theme.css\">
 <script src=\"/assets/addons/redaxo_custom_components/frontend/slick-slider/slick.min.js\"></script>");

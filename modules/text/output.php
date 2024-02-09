@@ -1,31 +1,11 @@
 <?php
-
-$rex_values_settings = json_decode(rex_article_slice::getArticleSliceById($rex_slice_id)->getValue(1), true);
-
-$outputBuilder = new CM_OutputBuilder(
-    $rex_values_settings[BootstrapColWidth::lg],
-    $rex_values_settings[BootstrapColWidth::md],
-    $rex_values_settings[BootstrapColWidth::sm],
-    $rex_values_settings[BootstrapColWidth::xs],
-    $rex_slice_id
-);
-
-$rex_values_content = json_decode(rex_article_slice::getArticleSliceById($rex_slice_id)->getValue(2), true);
-
-$htmlOutput = '';
-if (isset($rex_values_settings['padding']) && $rex_values_settings['padding'] == '1') {
-    $htmlOutput = '<div class="container">
-    <div class="row">
-        <div class="col-md-12">';
+//rex_article_content:: getContentAsQuery(true) -> SQL Queries erlauben
+//rex_article_content::
+$this->getContentAsQuery(true);
+$slice = rex_article_slice::getArticleSliceById($this->getCurrentSlice()->getId());
+if (null !== $slice) {
+    $rex_values_content = json_decode($slice->getValue(2), true);
+    if (isset($rex_values_content["text"]) && $rex_values_content["text"] != '') {
+        echo (new ModuleManager($this->getCurrentSlice()->getId()))->getOutput($rex_values_content["text"]);
+    }
 }
-$htmlOutput .= '<div class="text-block">' . $rex_values_content['wasiwyg_text'] . '</div>';
-
-if (isset($rex_values_settings['padding']) && $rex_values_settings['padding'] == '1') {
-    $htmlOutput .= '</div>
-    </div>
-</div>';
-}
-
-$outputBuilder->withFrontendOutput($htmlOutput);
-
-echo $outputBuilder->build();

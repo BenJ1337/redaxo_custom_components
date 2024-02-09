@@ -15,7 +15,7 @@
                 <div class="form-group">
                     <?php
                     $slice = rex_article_slice::getArticleSliceById($rex_slice_id);
-                    $anschriftNameInput = new InputField(
+                    $anschriftNameInput = new Inputfield(
                         "Name",
                         2,
                         ["anschrift_name"],
@@ -26,7 +26,7 @@
                 </div>
                 <div class="form-group">
                     <?php
-                    $anschriftStrasseInput = new InputField(
+                    $anschriftStrasseInput = new Inputfield(
                         "Straße und Hausnummer",
                         2,
                         ["anschrift_str_hnr"],
@@ -37,7 +37,7 @@
                 </div>
                 <div class="form-group">
                     <?php
-                    $anschriftPlzOrtInput = new InputField(
+                    $anschriftPlzOrtInput = new Inputfield(
                         "PLZ und Ort",
                         2,
                         ["anschrift_plz_ort"],
@@ -53,7 +53,7 @@
                 <legend>Bürozeiten:</legend>
                 <div class="form-group">
                     <?php
-                    $bueorZeitenMoDoInput = new InputField(
+                    $bueorZeitenMoDoInput = new Inputfield(
                         "Bürozeit von Mo bis Do",
                         2,
                         ["bueroZeitMoDo"],
@@ -64,7 +64,7 @@
                 </div>
                 <div class="form-group">
                     <?php
-                    $bueorZeitenFrInput = new InputField(
+                    $bueorZeitenFrInput = new Inputfield(
                         "Bürozeit am Fr",
                         2,
                         ["bueroZeitFr"],
@@ -80,7 +80,7 @@
                 <legend>Kontakt:</legend>
                 <div class="form-group">
                     <?php
-                    $kontaktTelInput = new InputField(
+                    $kontaktTelInput = new Inputfield(
                         "Telefon",
                         2,
                         ["kontaktTelInput"],
@@ -91,7 +91,7 @@
                 </div>
                 <div class="form-group">
                     <?php
-                    $kontaktFaxInput = new InputField(
+                    $kontaktFaxInput = new Inputfield(
                         "Fax",
                         2,
                         ["kontaktFaxInput"],
@@ -102,7 +102,7 @@
                 </div>
                 <div class="form-group">
                     <?php
-                    $emailInput = new InputField(
+                    $emailInput = new Inputfield(
                         "E-Mail",
                         2,
                         ["target_email_address"],

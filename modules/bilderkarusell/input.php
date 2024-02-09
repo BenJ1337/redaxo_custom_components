@@ -28,7 +28,7 @@ if (null !== $this->sliceSql) {
         <div class="form-group">
             <?php
             $slice = rex_article_slice::getArticleSliceById($rex_slice_id);
-            $slideSpeedInput = new InputField(
+            $slideSpeedInput = new Inputfield(
                 "Anzeigedauer",
                 2,
                 ["speed"],

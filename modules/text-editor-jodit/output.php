@@ -1,5 +1,8 @@
 
     <?php
+
+    use redaxo_bootstrap\{ModuleManager};
+
     $output = '';
     //rex_article_content:: getContentAsQuery(true) -> SQL Queries erlauben
     //rex_article_content::

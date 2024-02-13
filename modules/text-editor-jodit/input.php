@@ -1,4 +1,8 @@
 <?php
+
+use redaxo_eingabekomponenten\{WYSIWYGEditor, Inputfield};
+use redaxo_bootstrap\{ModuleManager};
+
 $sliceId = -1;
 $output = '';
 

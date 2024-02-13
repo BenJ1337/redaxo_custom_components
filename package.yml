@@ -1,6 +1,7 @@
 package: redaxo_custom_components
 version: '0.0.1'
 author: Benjamin Hacker
+supportpage: https://github.com/BenJ1337/redaxo_custom_components
 
 page:
   title: 'Redaxo Module'
@@ -9,5 +10,8 @@ page:
 
 requires:
   php:
-    version: '>=7.4.0'
+    version: '>=8.0.0'
   redaxo: '>=5.0.0'
+  packages:
+    - redaxo_eingabekomponenten: '>=0.0.1'
+    - redaxo_bootstrap: '>=0.0.1'

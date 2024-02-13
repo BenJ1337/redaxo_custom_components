@@ -13,7 +13,12 @@
         if (isset($rex_values_content["text"]) && $rex_values_content["text"] != '') {
             if (!rex::isBackend() && isset($rex_values_content["hintergrund"]) && isset($rex_values_content["deckkraft"])) {
                 list($r, $g, $b) = sscanf($rex_values_content["hintergrund"], "#%02x%02x%02x");
-                $output .= '<div style="background: rgba(' . $r . ',' . $g . ',' . $b . ',0.' . $rex_values_content["deckkraft"] . '); border-radius: 10px; padding: 20px;">';
+                $styles = '';
+                $styles .= 'background: rgba(' . $r . ',' . $g . ',' . $b . ',0.' . $rex_values_content["deckkraft"] . ');';
+                if (!rex::isBackend() && isset($rex_values_content["borderRadius"]) && isset($rex_values_content["borderRadius"])) {
+                    $styles .=  'border-radius: ' . $rex_values_content["borderRadius"] . '%; padding: 20px;';
+                }
+                $output .= '<div style="' . $styles . '">';
             }
             $output .= (new ModuleManager($this->getCurrentSlice()->getId()))->getOutput($rex_values_content["text"]);
             if (!rex::isBackend() && isset($rex_values_content["hintergrund"]) && isset($rex_values_content["deckkraft"]))

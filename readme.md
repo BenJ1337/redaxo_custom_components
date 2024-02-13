@@ -1,25 +1,10 @@
-# Neue Redaxo Komponenten
+Work in progress.
 
-## Installation
+dependencies:
 
-klone oder kopiere dieses repository in Deine Redaxo Installation unter /redaxo/src/addons/<this-repository>
+- [redaxo_eingabekomponenten](https://github.com/BenJ1337/redaxo_eingabekomponenten)
+- [redaxo_bootstrap](https://github.com/BenJ1337/redaxo_bootstrap)
 
-## Bildauswahl Komponente
- - Aktuell noch Änderung in mediapool.js notwendig (siehe Pull-Request)
- - Der Code für das Modul befindet sich im Addonverzeichnis 
+other stuff:
 
-Für die Nutzung ein neues Modul im Redaxo Backend anlegen und den eigentlichen Code des Module folgendermaßen referenzieren. 
-
-### Input
-
-    <?php
-    $rex_slice_id = 'REX_SLICE_ID';
-    $bild = 'REX_MEDIA[1]';
-    include(rex_path::addon("redaxo_custom_components", "modules/bild/input.php"));
-
-### Output
-
-    <?php
-    $rex_slice_id = 'REX_SLICE_ID';
-    $bild = 'REX_MEDIA[1]';
-    include(rex_path::addon("redaxo_custom_components", "modules/bild/output.php"));
+- [redaxo_url_rewrite](https://github.com/BenJ1337/redaxo_url_rewrite)

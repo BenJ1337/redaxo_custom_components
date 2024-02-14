@@ -1,6 +1,6 @@
 <?php
 
-use redaxo_eingabekomponenten\{WYSIWYGEditor, Inputfield};
+use redaxo_eingabekomponenten\{WYSIWYGEditor, Inputfield, Checkbox};
 use redaxo_bootstrap\{ModuleManager};
 
 $sliceId = -1;
@@ -33,6 +33,14 @@ $borderRadius = new Inputfield("Abgerundete Ecken",  ['borderRadius'],  $sliceId
 $borderRadius->setType('range');
 $borderRadius->setSettings(array("min" => "0", "max" => "100", "value" => $borderRadiusValue, "step" => "0.1"));
 $output .=   $borderRadius->getHTML();
+
+$output .= '<div class="form-group">' . (new Checkbox(
+    "Inhalt zentrieren",
+    ["center"],
+    $sliceId,
+    1,
+    'center'
+))->getHTML() . '</div>';
 
 $output .= (new WYSIWYGEditor("Text",  ['text'],  $sliceId, 2))->getHTML();
 echo (new ModuleManager($sliceId))->getInput($output);

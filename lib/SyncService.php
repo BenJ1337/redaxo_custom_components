@@ -166,7 +166,6 @@ class SyncService
     {
 
         $existingModules = $this->getIdsOfExistingModules();
-        dump($existingModules);
 
         $dir = rex_path::addon($this->modulename);
         $modulesDir = $dir . 'modules/';
@@ -226,7 +225,6 @@ class SyncService
         $rexSql->setTable(rex::getTablePrefix() . 'module');
         $rexSql->setWhere($where, $param);
         $rexSql->delete();
-        dump($rexSql->getRows());
         return $rexSql->getRows() === 1;
     }
 }

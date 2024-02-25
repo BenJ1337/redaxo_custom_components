@@ -1,13 +1,13 @@
 package: redaxo_custom_components
-version: '0.0.1'
+version: '0.0.1-dev'
 author: Benjamin Hacker
-
-page:
-  title: 'Einstellungen'
-  icon: rex-icon fa-link
-  perm: admin
+supportpage: https://github.com/BenJ1337/redaxo_custom_components
 
 requires:
-    php:
-        version: '>=7.4.0'
-    redaxo: '>=5.0.0'
+  php:
+    version: '>=8.0.0'
+  redaxo: '>=5.0.0'
+  packages:
+    redaxo_eingabekomponenten: '>=0.0.1'
+    redaxo_bootstrap: '>=0.0.1'
+    structure: '>=0.0.1'

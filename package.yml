@@ -8,6 +8,6 @@ requires:
     version: '>=8.0.0'
   redaxo: '>=5.0.0'
   packages:
-    redaxo_input_components: '>=0.0.1'
-    redaxo_bootstrap: '>=0.0.1'
+    redaxo_input_components: '>=0.0.1-dev'
+    redaxo_bootstrap: '>=0.0.1-dev'
     structure: '>=0.0.1'

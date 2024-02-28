@@ -171,12 +171,13 @@ class SyncService
         $modulesDir = $dir . 'modules/';
         $moduleDirs = array_diff(scandir($modulesDir), array('..', '.'));
         foreach ($moduleDirs as $moduleDir) {
-            $key = $this->modulename . '/' . $moduleDir;
-            self::insertModule(
-                $moduleDir,
-                '<?php include(rex_path::addon("redaxo_custom_components", "modules/' . $moduleDir . '/input.php"));',
-                '<?php $sliceId = REX_SLICE_ID; include(rex_path::addon("redaxo_custom_components", "modules/' . $moduleDir . '/output.php"));'
-            );
+            if (!str_starts_with($moduleDir, '.')) {
+                self::insertModule(
+                    $moduleDir,
+                    '<?php include(rex_path::addon("redaxo_custom_components", "modules/' . $moduleDir . '/input.php"));',
+                    '<?php $sliceId = REX_SLICE_ID; include(rex_path::addon("redaxo_custom_components", "modules/' . $moduleDir . '/output.php"));'
+                );
+            }
         }
     }
 

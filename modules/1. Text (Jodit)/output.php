@@ -16,7 +16,7 @@
                 $styles = '';
                 $styles .= 'background: rgba(' . $r . ',' . $g . ',' . $b . ',' . $rex_values_content["deckkraft"] / 100 . ');';
                 if (!rex::isBackend() && isset($rex_values_content["borderRadius"]) && isset($rex_values_content["borderRadius"])) {
-                    $styles .=  'border-radius: ' . $rex_values_content["borderRadius"] . '%; padding: 20px;';
+                    $styles .=  'border-radius: ' . $rex_values_content["borderRadius"] . 'px; padding: 20px;';
                 }
                 $output .= '<div style="' . $styles . '">';
             }

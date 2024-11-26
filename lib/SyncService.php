@@ -148,6 +148,16 @@ class SyncService
         return $rows[0]['count'] > 0;
     }
 
+    private function getModulesNames()
+    {
+        $existingModules = self::getModules();
+        $names = array();
+        foreach ($existingModules as $module) {
+            $names[] = $module->getName();
+        }
+        return $names;
+    }
+
     public function deleteAll(): void
     {
         $IdsOfExistingModules = $this->getIdsOfExistingModules();
@@ -170,13 +180,21 @@ class SyncService
         $dir = rex_path::addon($this->modulename);
         $modulesDir = $dir . 'modules/';
         $moduleDirs = array_diff(scandir($modulesDir), array('..', '.'));
+
+        $installesModules = $this->getModulesNames();
         foreach ($moduleDirs as $moduleDir) {
-            $key = $this->modulename . '/' . $moduleDir;
-            self::insertModule(
-                $moduleDir,
-                '<?php include(rex_path::addon("redaxo_custom_components", "modules/' . $moduleDir . '/input.php"));',
-                '<?php $sliceId = REX_SLICE_ID; include(rex_path::addon("redaxo_custom_components", "modules/' . $moduleDir . '/output.php"));'
-            );
+            if (!str_starts_with($moduleDir, '.')) {
+                if (in_array($moduleDir, $installesModules)) {
+                    dump($installesModules);
+                } else {
+                    dump($moduleDir);
+                    self::insertModule(
+                        $moduleDir,
+                        '<?php include(rex_path::addon("redaxo_custom_components", "modules/' . $moduleDir . '/input.php"));',
+                        '<?php $sliceId = REX_SLICE_ID; include(rex_path::addon("redaxo_custom_components", "modules/' . $moduleDir . '/output.php"));'
+                    );
+                }
+            }
         }
     }
 

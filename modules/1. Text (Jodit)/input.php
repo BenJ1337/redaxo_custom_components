@@ -9,7 +9,7 @@ $output = '';
 $deckkraft = '95';
 $borderRadiusValue = '0';
 
-if (null !== $this->sliceSql && $this->mode === 'edit') {
+if (null !== $this->sliceSql && $this->function === 'edit') {
     $sliceId = $this->getCurrentSlice()->getId();
     $rex_values_content = json_decode($this->getCurrentSlice()->getValue(2), true);
     if (isset($rex_values_content["deckkraft"])) {
@@ -22,17 +22,18 @@ if (null !== $this->sliceSql && $this->mode === 'edit') {
 
 $farbe = new Inputfield("Hintergrund",  ['hintergrund'],  $sliceId, 2);
 $farbe->setType('color');
+$farbe->setDefaultValue('#fff');
 $output .= $farbe->getHTML();
 
 $deck = new Inputfield("Deckkraft",  ['deckkraft'],  $sliceId, 2);
 $deck->setType('range');
 $deck->setSettings(array("min" => "0", "max" => "100", "value" => $deckkraft, "step" => "1"));
-$output .=   $deck->getHTML();
+$output .= $deck->getHTML();
 
 $borderRadius = new Inputfield("Abgerundete Ecken",  ['borderRadius'],  $sliceId, 2);
 $borderRadius->setType('range');
 $borderRadius->setSettings(array("min" => "0", "max" => "100", "value" => $borderRadiusValue, "step" => "0.1"));
-$output .=   $borderRadius->getHTML();
+$output .= $borderRadius->getHTML();
 
 $output .= '<div class="form-group">' . (new Checkbox(
     "Inhalt zentrieren",

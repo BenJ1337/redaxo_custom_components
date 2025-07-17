@@ -1,6 +1,6 @@
 <?php
 
-use redaxo_eingabekomponenten\{Inputfield};
+use redaxo_custom_components\{Inputfield};
 use redaxo_bootstrap\{ModuleManager};
 
 $sliceId = -1;

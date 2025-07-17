@@ -1,4 +1,7 @@
 <?php
+use redaxo_custom_components\{Textarea};
+use redaxo_bootstrap\{ModuleManager};
+
 $sliceId = -1;
 if (null !== $this->sliceSql && $this->mode === 'add') {
     $sliceId = $this->getCurrentSlice()->getId();

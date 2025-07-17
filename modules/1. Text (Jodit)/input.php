@@ -1,6 +1,6 @@
 <?php
 
-use redaxo_eingabekomponenten\{WYSIWYGEditor, Inputfield, Checkbox};
+use redaxo_custom_components\{WYSIWYGEditor, Inputfield, Checkbox};
 use redaxo_bootstrap\{ModuleManager};
 
 $sliceId = -1;

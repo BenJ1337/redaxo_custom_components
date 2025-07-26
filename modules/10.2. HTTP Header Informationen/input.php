@@ -1,4 +1,8 @@
 <?php
-$slice = rex_article_slice::getArticleSliceById($rex_slice_id);
-$bootstrapFormBuilder = new CM_BootstrapFormBuilder($slice);
-echo $bootstrapFormBuilder->build();
+use redaxo_bootstrap\{ModuleManager};
+
+$sliceId = -1;
+if (null !== $this->sliceSql && $this->mode === 'add') {
+    $sliceId = $this->getCurrentSlice()->getId();
+}
+echo (new ModuleManager($sliceId))->getInput('<p>Nothing to edit.</p>');

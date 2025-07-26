@@ -1,29 +1,18 @@
-<ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#general">Einstellungen</a></li>
-    <li><a data-toggle="tab" href="#nested">Breite</a></li>
-</ul>
-<div class="tab-content">
-    <div id="general" class="tab-pane fade in active">
-        <div class="form-group">
-            <?php
-            $slice = rex_article_slice::getArticleSliceById($rex_slice_id);
-            $bildauswahl = new Bildauswahl(
-                "Bild",
-                2,
-                ['bild'],
-                $slice != null ? rex_var::toArray($slice->getValue(2)) : null
-            );
-            $bildauswahl->getHTML();
-            ?>
-        </div>
-        <div class="form-group">
-            <?php
-            $dropDown = new DropDown(
-                'Höhe',
-                2,
-                ['hoehe'],
-                $slice != null ? rex_var::toArray($slice->getValue(2)) : null,
-                array(
+<?php
+
+use redaxo_custom_components\{WYSIWYGEditor, Bildauswahl, DropDown, CM_BootstrapFormBuilder};
+use redaxo_bootstrap\{ModuleManager};
+
+$sliceId = -1;
+
+if (null !== $this->sliceSql && $this->function === 'edit') {
+    $sliceId = $this->getCurrentSlice()->getId();
+}
+
+$output = '';
+$output .= new Bildauswahl("Bild", ['bild'], $sliceId, 2)->getHTML();
+
+$dropDown = new DropDown('Höhe', ['hoehe'], $sliceId, 2, array(
                     "50" => "50",
                     "100" => "100",
                     "200" => "200",
@@ -31,51 +20,12 @@
                     "300" => "300",
                     "500" => "500",
                     "600" => "600"
-                )
-            );
-            $dropDown->setDefaultValue("200");
-            echo $dropDown->getHTML();
-            ?>
-        </div>
-        <div class="form-group">
-            <?php
-            $slice = rex_article_slice::getArticleSliceById($rex_slice_id);
-            $wysiwygEditor = new WYSIWYGEditor(
-                "optionaler Text",
-                2,
-                ['wasiwyg_text'],
-                $slice != null ? rex_var::toArray($slice->getValue(2)) : null
-            );
-            $wysiwygEditor->getHTML();
-            ?>
-        </div>
-        <div class="form-group">
-            <?php
-            $dropDown = new DropDown(
-                'Textfarbe',
-                2,
-                ['textfarbe'],
-                $slice != null ? rex_var::toArray($slice->getValue(2)) : null,
-                array(
-                    "Weiß" => "#fff",
-                    "Schwart" => "#000"
-                )
-            );
-            $dropDown->setDefaultValue("200");
-            echo $dropDown->getHTML();
-            ?>
-        </div>
-    </div>
-    <div id="nested" class="tab-pane fade">
-        <div class="form-group">
-            <?php
-            $bootstrapFormBuilder = new CM_BootstrapFormBuilder($slice);
-            $bootstrapFormBuilder->withLgWidth('12');
-            $bootstrapFormBuilder->withMdWidth('12');
-            $bootstrapFormBuilder->withSmWidth('12');
-            $bootstrapFormBuilder->withXsWidth('12');
-            echo $bootstrapFormBuilder->build();
-            ?>
-        </div>
-    </div>
-</div>
+));
+
+$dropDown->setDefaultValue("200");
+$output .= $dropDown->getHTML();
+
+$output .= new WYSIWYGEditor("optionaler Text", ['wasiwyg_text'], $sliceId, 2)->getHTML();
+
+echo (new ModuleManager($sliceId))->getInput($output);
+?>

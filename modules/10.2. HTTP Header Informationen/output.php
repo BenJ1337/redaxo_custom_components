@@ -28,7 +28,7 @@ foreach ($properties as $key => $value) {
     if (preg_match('/.*TIME.*/', $key)) {
         $timeStr = '';
         try {
-            $timeStr = date('d.m.Y H:m:s', $value);
+            $timeStr = date('d.m.Y H:m:s', round($value));
         } catch (Exception $e) {
             $timeStr = '*';
         }

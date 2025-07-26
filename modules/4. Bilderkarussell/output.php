@@ -3,9 +3,13 @@
 $this->getContentAsQuery(true);
 $slice = rex_article_slice::getArticleSliceById($this->getCurrentSlice()->getId());
 
+use redaxo_bootstrap\{CM_Global_Request_Settings};
+
 $globalSettings = CM_Global_Request_Settings::getInstance();
 $globalSettings->setSlickslider(true);
 
+$this->getContentAsQuery(true);
+$slideId = $this->getCurrentSlice()->getId();
 
 $rex_values_settings = json_decode($slice->getValue(1), true);
 $rex_values_content = json_decode($slice->getValue(2), true);
@@ -26,19 +30,11 @@ if (rex::isBackend()) {
 
 $rex_values_settings = json_decode($slice->getValue(1), true);
 
-$outputBuilder = new CM_OutputBuilder(
-    $rex_values_settings[BootstrapColWidth::lg],
-    $rex_values_settings[BootstrapColWidth::md],
-    $rex_values_settings[BootstrapColWidth::sm],
-    $rex_values_settings[BootstrapColWidth::xs],
-    $this->getCurrentSlice()->getId()
-);
-
 $rex_values_content = json_decode($slice->getValue(2), true);
 
 $htmlOutput = '';
 
-$htmlOutput .= '<div class="slick-slider slick-slider-' . $rex_slice_id . '">';
+$htmlOutput .= '<div class="slick-slider slick-slider-' . $slideId . '">';
 foreach (explode(',', $rex_values_content["bilder"]) as $img) {
     if ($img !== "") {
         $medium = rex_media::get($img);
@@ -54,9 +50,9 @@ $htmlOutput .= '</div>';
 $htmlOutput .= '<script>
     window.onload=function() {
         try {
-            $(".slick-slider-' . $rex_slice_id . '").css("max-height", (window.innerHeight - 72) + "px")
+            $(".slick-slider-' . $slideId . '").css("max-height", (window.innerHeight - 72) + "px")
 
-$(".slick-slider-' . $rex_slice_id . '").slick({';
+$(".slick-slider-' . $slideId . '").slick({';
 
 if (isset($rex_values_content['infinity']) && $rex_values_content['infinity'] != '')
     $htmlOutput .= 'infinite: ' . $rex_values_content['infinity'] . ',';
@@ -95,10 +91,7 @@ console.log("Slider");
 };
 </script>';
 
-$outputBuilder->withFrontendOutput($htmlOutput);
-
-echo $outputBuilder->build();
-
+echo $htmlOutput;
 if (rex::isBackend()) {
     print(
         "

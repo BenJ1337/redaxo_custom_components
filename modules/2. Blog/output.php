@@ -1,19 +1,18 @@
 <?php
+    use redaxo_bootstrap\{ModuleManager};
 
-$rex_values_settings = json_decode(rex_article_slice::getArticleSliceById($rex_slice_id)->getValue(1), true);
+    $this->getContentAsQuery(true);
+    $sliceId = $this->getCurrentSlice()->getId();
+    $slice = rex_article_slice::getArticleSliceById($sliceId);
 
-$outputBuilder = new CM_OutputBuilder(
-    $rex_values_settings[BootstrapColWidth::lg],
-    $rex_values_settings[BootstrapColWidth::md],
-    $rex_values_settings[BootstrapColWidth::sm],
-    $rex_values_settings[BootstrapColWidth::xs]
-);
-
-$rex_values_content = json_decode(rex_article_slice::getArticleSliceById($rex_slice_id)->getValue(2), true);
+$rex_values_settings = json_decode(rex_article_slice::getArticleSliceById($sliceId)->getValue(1), true);
+$rex_values_content = json_decode(rex_article_slice::getArticleSliceById($sliceId)->getValue(2), true);
 
 $output = '';
 
 $selectedArticle = rex_article::get($rex_values_content['link']);
+
+$output = '';
 if ($selectedArticle != null) {
     $categorieId = $selectedArticle->getCategoryId();
 
@@ -29,7 +28,7 @@ if ($selectedArticle != null) {
             $text = rex_var_article::getArticleValue($article->getId(), "art_blog_preview_text");
 
             $output .= '<div class="card blog">'
-                . (!empty(trim($image)) ? '<img class="card-img-top" src="/media/' . $image . '" alt="Card image">' : '')
+                . ($image !== null && !empty(trim($image)) ? '<img class="card-img-top" src="/media/' . $image . '" alt="Card image">' : '')
                 . '<div class="card-body">'
                 . '<h4 class="card-title">' . $article->getName() . ' <span class="badge badge-dark">' . $timestamp . '</span></h4>'
                 . '<p class="card-text">' . $text . '</p>'
@@ -39,20 +38,12 @@ if ($selectedArticle != null) {
         }
     }
 
-    $outputBuilder->withFrontendOutput($output);
 }
 
-echo $outputBuilder->build();
-
-
-
+echo $output;
 
 /*
-
 $articleIDSubCat = $articlesSubCat[0]->getId();
-
 $slicesOfArticle = rex_article_slice::getSlicesForArticle($articleIDSubCat);
-
-foreach($slicesOfArticle as $slice) {
- echo $slice->getSlice();
-}*/
+foreach($slicesOfArticle as $slice) { echo $slice->getSlice(); }
+*/
